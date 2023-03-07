@@ -9,15 +9,15 @@ class Collision {
     this.canvas.width = innerWidth
     this.canvas.height = innerHeight
   
-    this.mouse = {
+    this.position = {
       x: innerWidth / 2,
       y: innerHeight / 2,
     }
     this.pointer = null
     
-    window.addEventListener("mousemove", (event) => {
-      this.mouse.x = event.clientX
-      this.mouse.y = event.clientY
+    window.addEventListener('pointermove', (event) => {
+      this.position.x = event.clientX
+      this.position.y = event.clientY
     })
   }
   
@@ -35,8 +35,8 @@ class Collision {
     this.target.update()
     this.pointer.update()
     
-    this.pointer.x = this.mouse.x
-    this.pointer.y = this.mouse.y
+    this.pointer.x = this.position.x
+    this.pointer.y = this.position.y
     
     if (this.getDistance(this.target.x, this.target.y, this.pointer.x, this.pointer.y) < this.target.radius + this.pointer.radius) {
       this.target.color = 'tomato'
