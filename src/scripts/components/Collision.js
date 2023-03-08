@@ -6,24 +6,15 @@ export default class Collision {
     this.ctx = ctx
     this.target = target
     
-    this.canvas.width = innerWidth
-    this.canvas.height = innerHeight
-    
-    this.position = {
+    this.coordinates = {
       x: innerWidth / 2,
       y: innerHeight / 2,
     }
     this.pointer = null
     
-    let count = 0
-    window.addEventListener('resize', () => {
-      this.canvas.width = window.innerWidth
-      this.canvas.height = window.innerHeight
-      count++
-    })
     window.addEventListener('pointermove', (event) => {
-      this.position.x = event.clientX
-      this.position.y = event.clientY
+      this.coordinates.x = event.clientX
+      this.coordinates.y = event.clientY
     })
   }
   
@@ -41,8 +32,8 @@ export default class Collision {
     this.target.update()
     this.pointer.update()
     
-    this.pointer.x = this.position.x
-    this.pointer.y = this.position.y
+    this.pointer.x = this.coordinates.x
+    this.pointer.y = this.coordinates.y
     
     if (this.getDistance(this.target.x, this.target.y, this.pointer.x, this.pointer.y) < this.target.radius + this.pointer.radius) {
       this.target.color = 'tomato'
