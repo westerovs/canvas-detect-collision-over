@@ -34,12 +34,18 @@ export default class Collision {
     
     this.pointer.x = this.coordinates.x
     this.pointer.y = this.coordinates.y
-    
+  
+    this.pointerOver()
+  }
+  
+  pointerOver = () => {
     if (this.getDistance(this.target.x, this.target.y, this.pointer.x, this.pointer.y) < this.target.radius + this.pointer.radius) {
       this.target.color = 'tomato'
+      document.body.style.cursor = 'crosshair'
     }
     else {
       this.target.color = "black"
+      document.body.style.cursor = 'initial'
     }
   }
   
